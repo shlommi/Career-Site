@@ -5,16 +5,38 @@ import {
   Logo,
   MenuLinks,
   Link,
-  WrapperRight
+  WrapperRight,
+  DropdownDiv,
+  GridContainer,
+  SearchField,
+  CloseDiv,
+  Suggest,
+  Category
 } from "./NavigationBar.style";
-
 export default class NavigationBar extends Component {
   state = {
-    dropDown: false
+    dropDown: false,
+    term: "",
+    selectedItem: 3
   };
+
+  handleChangeInput = e => {
+    this.setState({ term: e.target.value });
+  };
+
+  handleClearFieldInput = () => {
+    this.setState({ term: "" });
+  };
+
+  handleItemClick = itemId => {
+    console.log(itemId);
+    this.setState(() => ({ selectedItem: itemId }));
+  };
+
   render() {
+    const { term, dropDown, selectedItem } = this.state;
     return (
-      <NavigationContainer justify="center" align="center" dropDown>
+      <NavigationContainer justify="center" align="center">
         <WrapperLeft justify="flex-start" align="center">
           <Logo />
           <MenuLinks justify="center" align="center">
@@ -27,7 +49,7 @@ export default class NavigationBar extends Component {
         </WrapperLeft>
         <WrapperRight justify="center" align="center">
           <MenuLinks justify="center" align="center">
-            <Link href="#" hover>
+            <Link href="#">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="17"
@@ -65,7 +87,15 @@ export default class NavigationBar extends Component {
               </svg>
               Saved Jobs
             </Link>
-            <Link href="#">
+            <Link
+              href="#"
+              onClick={() =>
+                this.setState({
+                  dropDown: true
+                })
+              }
+              // onMouseLeave={() => this.setState({ dropDown: false })}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -90,7 +120,72 @@ export default class NavigationBar extends Component {
             </Link>
           </MenuLinks>
         </WrapperRight>
+        <DropdownDiv
+          dropDown={dropDown}
+          onMouseLeave={() => this.setState({ dropDown: false })}
+        >
+          <GridContainer>
+            <SearchField>
+              <input
+                type="text"
+                list="categories"
+                value={term}
+                onChange={this.handleChangeInput}
+                placeholder="Enter Job Title or Location"
+              />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+              >
+                <g fill="none" fillRule="evenodd">
+                  <path d="M-7-9h32v32H-7z" />
+                  <g
+                    stroke="#4a4a4a"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1.2"
+                    transform="translate(1 1)"
+                  >
+                    <circle cx="6.125" cy="6.125" r="6.125" />
+                    <path d="M14 14l-3.5-3.5" />
+                  </g>
+                </g>
+              </svg>
+              <Suggest>
+                <ul>
+                  <li className="grey">JOB CATEGORIES</li>
+                  {categoriesList.map(item => {
+                    return (
+                      <Category
+                        key={item.id}
+                        onClick={() => this.handleItemClick(item.id)}
+                        style={{
+                          color: `${
+                            selectedItem === item.id ? "#ff4d6b" : "#a4a4a4"
+                          }`
+                        }}
+                      >
+                        {item.name}
+                      </Category>
+                    );
+                  })}
+                </ul>
+              </Suggest>
+            </SearchField>
+            <CloseDiv onClick={this.handleClearFieldInput}>X</CloseDiv>
+          </GridContainer>
+        </DropdownDiv>
       </NavigationContainer>
     );
   }
 }
+
+const categoriesList = [
+  { id: 0, name: "Business Development" },
+  { id: 1, name: "Engineering" },
+  { id: 2, name: "Information Technology" },
+  { id: 3, name: "Sales" },
+  { id: 4, name: "Marketing Manager" }
+];
