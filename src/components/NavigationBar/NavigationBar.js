@@ -24,13 +24,26 @@ export default class NavigationBar extends Component {
     this.setState({ term: e.target.value });
   };
 
-  handleClearFieldInput = () => {
-    this.setState({ term: "" });
-  };
-
   handleItemClick = itemId => {
     console.log(itemId);
     this.setState(() => ({ selectedItem: itemId }));
+  };
+
+  handleDropdownOnClicked = () => {
+    this.setState(() => {
+      return { dropDown: true };
+    });
+    this.props.handleOverlayOnClick();
+  };
+
+  handleCloseDropdownOnClick = () => {
+    this.setState(() => {
+      return {
+        term: "",
+        dropDown: false
+      };
+    });
+    this.props.handleOverlayOnClick();
   };
 
   render() {
@@ -87,15 +100,7 @@ export default class NavigationBar extends Component {
               </svg>
               Saved Jobs
             </Link>
-            <Link
-              href="#"
-              onClick={() =>
-                this.setState({
-                  dropDown: true
-                })
-              }
-              // onMouseLeave={() => this.setState({ dropDown: false })}
-            >
+            <Link href="#" onClick={this.handleDropdownOnClicked}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -120,10 +125,7 @@ export default class NavigationBar extends Component {
             </Link>
           </MenuLinks>
         </WrapperRight>
-        <DropdownDiv
-          dropDown={dropDown}
-          onMouseLeave={() => this.setState({ dropDown: false })}
-        >
+        <DropdownDiv dropDown={dropDown}>
           <GridContainer>
             <SearchField>
               <input
@@ -174,7 +176,7 @@ export default class NavigationBar extends Component {
                 </ul>
               </Suggest>
             </SearchField>
-            <CloseDiv onClick={this.handleClearFieldInput}>X</CloseDiv>
+            <CloseDiv onClick={this.handleCloseDropdownOnClick}>X</CloseDiv>
           </GridContainer>
         </DropdownDiv>
       </NavigationContainer>
