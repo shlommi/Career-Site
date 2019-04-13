@@ -1,7 +1,21 @@
 import React, { Component } from "react";
-import { Image, Container, Overlay } from "./App.style";
+import { GlobalStyle } from "../../theme/globalStyle";
+import { Wrapper } from "../../theme/grid";
+import {
+  Image,
+  Overlay,
+  MainHeader,
+  SubHeader,
+  DivWithBorder,
+  BorderRight,
+  BorderBottom,
+  Header,
+  FindJobsWrapper
+} from "./App.style";
 import NavigationBar from "../../components/NavigationBar/NavigationBar";
 import RecommendationBar from "../../components/RecommendationsBar/RecommendationsBar";
+import ChatIcon from "../../components/ChatIcon/ChatIcon";
+import RectanglesBar from "../../components/RectanglesBar/RectanglesBar";
 
 class App extends Component {
   state = {
@@ -13,15 +27,43 @@ class App extends Component {
       return { isDarken: !this.state.isDarken };
     });
   };
+
   render() {
     return (
-      <Container>
+      <React.Fragment>
+        <GlobalStyle />
         <NavigationBar handleOverlayOnClick={this.handleOverlayOnClick} />
         <Overlay isDarken={this.state.isDarken}>
-          <Image />
+          <Image>
+            <Wrapper>
+              <DivWithBorder>
+                <BorderRight />
+                <BorderBottom />
+                <RectanglesBar />
+                <Header column="column" align="flex-start">
+                  <MainHeader>Share your travel</MainHeader>
+                  <SubHeader>experience with us</SubHeader>
+                  <FindJobsWrapper justify="flex-start" align="center">
+                    <input
+                      type="text"
+                      className="keyword-input"
+                      placeholder="Keyword, Job Title or Job ID"
+                    />
+                    <input
+                      type="text"
+                      className="country-input"
+                      placeholder="Country, State or City"
+                    />
+                    <button>Find Jobs</button>
+                  </FindJobsWrapper>
+                </Header>
+              </DivWithBorder>
+              <ChatIcon />
+            </Wrapper>
+          </Image>
           <RecommendationBar />
         </Overlay>
-      </Container>
+      </React.Fragment>
     );
   }
 }

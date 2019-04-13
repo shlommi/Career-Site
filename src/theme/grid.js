@@ -23,8 +23,24 @@ export const Div = styled.div`
       `}
 `;
 
+export const Wrapper = styled(Div)`
+  width: 1280px;
+  margin: 0 auto;
+  padding-left: 80px;
+  padding-right: 80px;
+`;
+
+export const Container = styled(Div)`
+  width: 100%;
+  margin: 0 auto;
+  padding-left: 80px;
+  padding-right: 80px;
+  background-color: yellow;
+`;
+
 export const FlexDiv = styled(Div)`
   display:flex;
+ 
 
   ${({ column }) =>
     column &&
@@ -42,10 +58,3 @@ export const FlexDiv = styled(Div)`
       align-items: ${align};
     `}
 `;
-
-// @media(min - width: 768px) and(max - width: 995px) {
-//   width: 70 %;
-// }
-// @media(min - width: 996px) {
-//   width: 60 %;
-// }
