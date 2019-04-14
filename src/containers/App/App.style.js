@@ -4,8 +4,7 @@ import { FlexDiv } from "../../theme/grid";
 
 export const Image = styled.div`
   width: 100%;
-  display: block;
-  position: relative;
+  display: inline-block;
   background-image: url(${require("../../assets/image-2.png")});
   background-position: cover;
   background-size: 100%;
@@ -68,31 +67,46 @@ export const SubHeader = styled.h1`
 
 export const FindJobsWrapper = styled(FlexDiv)`
   margin-top: 40px;
+
   input {
     width: 336px;
     height: 45px;
+    font-size: 16px;
     background-color: ${white};
-    color: ##686868;
+    color: #686868;
     margin-right: 14px;
     border: none;
     outline: none;
+    padding-left: 2px;
 
     &::placeholder {
       padding: 2px 0 2px 15px;
       font-size: 14px;
     }
   }
+`;
 
-  button {
-    font-weight: 600;
-    font-size: 16px;
-    color: ${white};
-    background-color: ${skyBlue};
-    outline: none;
-    border: none;
-    width: 144px;
-    height: 48px;
-    padding: 2px;
+export const Button = styled.button`
+  font-size: 16px;
+  color: ${white};
+  background-color: ${skyBlue};
+  outline: none;
+  border: none;
+  width: 144px;
+  height: 45px;
+  padding: 2px;
+  transition: all 0.3s ease-in;
+  cursor: pointer;
+
+  &:hover {
+    color: ${skyBlue};
+    background-color: ${white};
+    font-weight: bold;
+    border: 1px solid ${skyBlue};
+  }
+
+  &:active {
+    transform: scale(1.1);
   }
 `;
 

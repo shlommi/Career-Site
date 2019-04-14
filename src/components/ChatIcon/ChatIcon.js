@@ -33,7 +33,12 @@ export default function ChatIcon() {
 }
 
 const IconWarpper = styled.span`
-  position: absolute;
-  right: 3%;
-  bottom: 6%;
+  transform: translate(1180px, 170px);
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+
+  &:hover {
+    transform: translate(1180px, 165px);
+    box-shadow: 0px 22px 15px -19px rgba(0, 0, 0, 0.95);
+  }
 `;

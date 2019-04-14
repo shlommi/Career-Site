@@ -10,7 +10,8 @@ import {
   BorderRight,
   BorderBottom,
   Header,
-  FindJobsWrapper
+  FindJobsWrapper,
+  Button
 } from "./App.style";
 import NavigationBar from "../../components/NavigationBar/NavigationBar";
 import RecommendationBar from "../../components/RecommendationsBar/RecommendationsBar";
@@ -54,11 +55,11 @@ class App extends Component {
                       className="country-input"
                       placeholder="Country, State or City"
                     />
-                    <button>Find Jobs</button>
+                    <Button>Find Jobs</Button>
                   </FindJobsWrapper>
+                  <ChatIcon />
                 </Header>
               </DivWithBorder>
-              <ChatIcon />
             </Wrapper>
           </Image>
           <RecommendationBar />

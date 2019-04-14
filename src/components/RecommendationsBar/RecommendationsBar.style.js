@@ -29,6 +29,13 @@ export const Button = styled.button`
   color: #006ac3;
   padding: 12px 10px;
   border: none;
+  cursor: pointer;
+  transition: all 0.3 ease;
+
+  &:active {
+    box-shadow: 0px 22px 15px -19px rgba(0, 0, 0, 0.95);
+    transform: scale(1.05);
+  }
 
   span {
     font-weight: bold;
