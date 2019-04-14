@@ -5,6 +5,7 @@ import { FlexDiv } from "../../theme/grid";
 export const Image = styled.div`
   width: 100%;
   display: block;
+  position: relative;
   background-image: url(${require("../../assets/image-2.png")});
   background-position: cover;
   background-size: 100%;

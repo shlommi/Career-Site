@@ -34,6 +34,6 @@ export default function ChatIcon() {
 
 const IconWarpper = styled.span`
   position: absolute;
-  right: 0;
-  bottom: 0;
+  right: 3%;
+  bottom: 6%;
 `;
