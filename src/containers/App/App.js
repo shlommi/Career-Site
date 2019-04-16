@@ -17,6 +17,7 @@ import NavigationBar from "../../components/NavigationBar/NavigationBar";
 import RecommendationBar from "../../components/RecommendationsBar/RecommendationsBar";
 import ChatIcon from "../../components/ChatIcon/ChatIcon";
 import RectanglesBar from "../../components/RectanglesBar/RectanglesBar";
+import ChooseYourPathWidget from "../../components/ChooseYourPathWidget";
 
 class App extends Component {
   state = {
@@ -63,6 +64,7 @@ class App extends Component {
             </Wrapper>
           </Image>
           <RecommendationBar />
+          <ChooseYourPathWidget />
         </Overlay>
       </React.Fragment>
     );
