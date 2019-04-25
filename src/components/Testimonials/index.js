@@ -7,7 +7,7 @@ import { testimonialsInfo } from "./data";
 
 export default class index extends Component {
   state = {
-    testimonialsInfo: testimonialsInfo[0]
+    testimonialsInfo: { ...testimonialsInfo[0] }
   };
   render() {
     const { img, name, jobTitle, info } = this.state.testimonialsInfo;
@@ -24,7 +24,9 @@ export default class index extends Component {
                 height="52"
                 viewBox="0 0 52 52"
                 onClick={() =>
-                  this.setState({ testimonialsInfo: testimonialsInfo[0] })
+                  this.setState({
+                    testimonialsInfo: { ...testimonialsInfo[0] }
+                  })
                 }
               >
                 <g fill="none" fillRule="evenodd">
@@ -45,7 +47,9 @@ export default class index extends Component {
                 height="52"
                 viewBox="0 0 52 52"
                 onClick={() =>
-                  this.setState({ testimonialsInfo: testimonialsInfo[1] })
+                  this.setState({
+                    testimonialsInfo: { ...testimonialsInfo[1] }
+                  })
                 }
               >
                 <g fill="none" fillRule="evenodd">
@@ -59,7 +63,7 @@ export default class index extends Component {
                   </g>
                 </g>
               </RightArrow>
-              {this.state.testimonialsInfo === testimonialsInfo[0] ? (
+              {this.state.testimonialsInfo === { ...testimonialsInfo[0] } ? (
                 <RectanglesBar>
                   <div className="active" />
                   <div />
@@ -109,6 +113,17 @@ const hoverIn = keyframes`
     }
     to {
         transform: rotate(360deg); transform-origin: center;
+    }
+`;
+
+const fadeIn = keyframes`
+  from {
+        transform: scale(0.8); transform-origin: center;
+        opacity: 0;
+    }
+    to {
+        transform: scale(1); transform-origin: center;
+        opacity:1;
     }
 `;
 
@@ -180,6 +195,7 @@ const RectanglesBar = styled.div`
 `;
 
 const ProfileDiv = styled(FlexDiv)`
+  animation: 0.5s ${fadeIn} cubic-bezier(0.36, 0.16, 0.14, 0.88);
   width: 355px;
   height: 100%;
   margin-bottom: 120px;
